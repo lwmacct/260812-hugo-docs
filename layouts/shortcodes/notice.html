@@ -1,0 +1,4 @@
+<aside class="notice notice-{{ .Get "type" | default "note" }}">
+  <strong>{{ .Get "title" | default (cond (eq (.Get "type" | default "note") "tip") "提示" "注意") }}</strong>
+  <div>{{ .Inner | markdownify }}</div>
+</aside>

@@ -1,0 +1,20 @@
+{{ define "main" }}
+<main class="wrap page-layout">
+  <header class="page-header">
+    <p class="eyebrow">{{ if eq .Section "docs" }}GUIDE{{ else }}JOURNAL{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-lede">{{ . }}</p>{{ end }}
+  </header>
+  {{ with .Content }}<div class="prose intro-content">{{ . }}</div>{{ end }}
+  <div class="listing-grid">
+    {{ range .Pages.ByWeight }}
+      <a class="listing-card" href="{{ .RelPermalink }}">
+        <div class="listing-meta"><span>{{ if eq .Section "docs" }}第 {{ printf "%02d" .Weight }} 章{{ else }}文章{{ end }}</span><span>{{ .ReadingTime }} 分钟阅读</span></div>
+        <h2>{{ .Title }}</h2>
+        <p>{{ .Description }}</p>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

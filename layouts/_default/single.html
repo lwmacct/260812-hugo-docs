@@ -1,0 +1,24 @@
+{{ define "main" }}
+<main class="wrap article-layout{{ if ne .Type "docs" }} article-layout-single{{ end }}">
+  {{ if eq .Type "docs" }}
+    <aside class="doc-sidebar" aria-label="文档目录">
+      <p class="sidebar-title">学习路径</p>
+      <nav>
+        {{ range (where site.RegularPages "Section" "docs").ByWeight }}
+          <a class="{{ if eq .RelPermalink $.RelPermalink }}is-current{{ end }}" href="{{ .RelPermalink }}"><span>{{ printf "%02d" .Weight }}</span>{{ replaceRE `^\d+ · ` "" .Title }}</a>
+        {{ end }}
+      </nav>
+    </aside>
+  {{ end }}
+  <article class="article">
+    <header class="article-header">
+      {{ if eq .Type "docs" }}<p class="eyebrow">HUGO GUIDE / {{ printf "%02d" .Weight }}</p>{{ else }}<p class="eyebrow">EXAMPLE ARTICLE</p>{{ end }}
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="article-lede">{{ . }}</p>{{ end }}
+      <div class="article-meta">{{ if ne .Type "docs" }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年1月2日" }}</time>{{ end }}<span>{{ .ReadingTime }} 分钟阅读</span></div>
+    </header>
+    <div class="prose">{{ .Content }}</div>
+    {{ with .Params.tags }}<footer class="article-tags"><span>标签</span>{{ range . }}<a href="{{ "tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}</footer>{{ end }}
+  </article>
+</main>
+{{ end }}

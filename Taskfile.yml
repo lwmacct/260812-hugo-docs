@@ -24,3 +24,19 @@ includes:
   ci:
     taskfile: .task/ci.yml
     optional: true
+
+tasks:
+  dev:
+    desc: Start the Hugo development server
+    cmds:
+      - hugo server --buildDrafts --disableFastRender
+
+  build:
+    desc: Build an optimized production site
+    cmds:
+      - hugo --gc --minify
+
+  check:
+    desc: Validate Hugo configuration and content
+    cmds:
+      - hugo --printPathWarnings --quiet

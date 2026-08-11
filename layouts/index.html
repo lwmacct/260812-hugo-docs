@@ -1,0 +1,66 @@
+{{ define "main" }}
+<main class="home">
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">STATIC SITE, CLEAR IDEAS</p>
+      <h1>{{ .Title }}</h1>
+      <p class="hero-lede">{{ .Params.description }}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ "docs/" | relURL }}">开始学习 <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="{{ "posts/first-post/" | relURL }}">查看示例文章</a>
+      </div>
+    </div>
+    <div class="hero-map" aria-label="Hugo 学习路径">
+      <div class="map-label">从输入到输出</div>
+      <div class="map-node"><span>01</span><strong>内容</strong><small>Markdown</small></div>
+      <div class="map-line"></div>
+      <div class="map-node"><span>02</span><strong>模板</strong><small>Go templates</small></div>
+      <div class="map-line"></div>
+      <div class="map-node"><span>03</span><strong>静态文件</strong><small>public/</small></div>
+    </div>
+  </section>
+
+  <section class="intro-band">
+    <div class="wrap intro-grid">
+      <div>
+        <p class="eyebrow">WHY HUGO</p>
+        <h2>小项目也值得一个清楚的结构。</h2>
+      </div>
+      <p>这个仓库刻意保持原生：没有复杂主题，没有运行时数据库。你能看到每一个目录如何参与构建，并可以安全地改动它们。</p>
+    </div>
+  </section>
+
+  <section class="wrap section-block">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">CURRICULUM</p>
+        <h2>五个阶段，搭出完整心智模型</h2>
+      </div>
+      <a class="text-link" href="{{ "docs/" | relURL }}">全部文档 <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="lesson-grid">
+      {{ range (where site.RegularPages "Section" "docs").ByWeight }}
+        <a class="lesson-card" href="{{ .RelPermalink }}">
+          <span class="lesson-number">{{ printf "%02d" .Weight }}</span>
+          <h3>{{ .Title }}</h3>
+          <p>{{ .Description }}</p>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="wrap section-block practice-block">
+    <div class="practice-copy">
+      <p class="eyebrow">LEARN BY CHANGING IT</p>
+      <h2>现在就改一行内容，看看它如何变成页面。</h2>
+      <p>运行开发服务器，打开一个文档页面，然后修改 Markdown 或模板。Hugo 会在每次保存后重新构建。</p>
+      <a class="button button-dark" href="{{ "docs/01-getting-started/" | relURL }}">打开第一章 <span aria-hidden="true">→</span></a>
+    </div>
+    <pre class="terminal" aria-label="终端命令"><code><span class="terminal-dim">$</span> hugo server
+<span class="terminal-ok">Built in 18 ms</span>
+<span class="terminal-dim">Web Server is available at</span>
+<span class="terminal-url">http://localhost:1313/</span></code></pre>
+  </section>
+</main>
+{{ end }}

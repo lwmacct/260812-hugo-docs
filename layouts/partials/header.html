@@ -1,0 +1,9 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ "" | relURL }}" aria-label="返回首页"><span class="brand-mark">H</span><span>{{ site.Title }}</span></a>
+    <nav class="main-nav" aria-label="主导航">
+      {{ range site.Menus.main }}<a class="{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}is-active{{ end }}" href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}
+    </nav>
+    <a class="github-link" href="{{ site.Params.repo }}" target="_blank" rel="noreferrer">Hugo 官网 <span aria-hidden="true">↗</span></a>
+  </div>
+</header>

@@ -17,6 +17,9 @@ bin/
 dist/
 build/
 out/
+public/
+resources/_gen/
+.hugo_build.lock
 .next/
 *.vsix
 [0-9]*-

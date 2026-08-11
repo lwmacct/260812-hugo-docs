@@ -1,0 +1,51 @@
+baseURL = 'http://localhost:1313/'
+locale = 'zh-CN'
+defaultContentLanguage = 'zh-cn'
+title = 'Hugo 学习手册'
+enableRobotsTXT = true
+
+[params]
+  description = '从零开始理解 Hugo 静态站点生成器。'
+  author = 'Hugo 学习手册'
+  repo = 'https://gohugo.io/'
+
+[languages]
+  [languages.zh-cn]
+    label = '简体中文'
+    locale = 'zh-CN'
+    contentDir = 'content'
+    weight = 1
+
+[menu]
+  [[menu.main]]
+    name = '首页'
+    pageRef = '/'
+    weight = 1
+  [[menu.main]]
+    name = '学习路径'
+    pageRef = '/docs/'
+    weight = 2
+  [[menu.main]]
+    name = '示例文章'
+    pageRef = '/posts/'
+    weight = 3
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
